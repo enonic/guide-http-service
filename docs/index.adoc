@@ -120,7 +120,7 @@ image:images/service-example.png["Service example", width=75%, align="center"]
 
 
 +
-NOTE: The *project name* can be found in the top left corner of Content Studio. If you haven't set up a new project, it is probably the `default` one. *Branch* will be `draft` or `master`. *App name* was already described before, and is located in `gradle.properties`
+TIP: The *project name* can be found in the top left corner of Content Studio. If you haven't set up a new project, it is probably the `default` one. *Branch* will be `draft` or `master`. *App name* was already described before, and is located in `gradle.properties`
 
 NOTE: Depending on the context it is possible to get no data in response. The reason might be that in that context you don't have person content type instances to be queried by content lib.
 
