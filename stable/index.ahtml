@@ -466,7 +466,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Additional information on HTTP services can be found in the offical XP documentation: <a href="https://developer.enonic.com/docs/xp/stable/runtime/engines/http-service" class="bare">https://developer.enonic.com/docs/xp/stable/runtime/engines/http-service</a>
+Additional information on HTTP services can be found in the offical <a href="https://developer.enonic.com/docs/xp/stable/runtime/engines/http-service">XP documentation</a>.
 </td>
 </tr>
 </table>
@@ -803,7 +803,7 @@ Depending on the context it is possible to get no data in response. The reason m
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-08-14 13:22:51 UTC
+Last updated 2023-08-14 13:44:43 UTC
 </div>
 </div>
 </body>
