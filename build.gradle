@@ -1,0 +1,28 @@
+plugins {
+    id 'com.enonic.xp.app' version '3.2.0'
+}
+
+app {
+    name = project.appName
+    displayName = 'Guide to http service'
+    vendorName = 'Enonic'
+    vendorUrl = 'http://enonic.com'
+    systemVersion = "${xpVersion}"
+}
+
+dependencies {
+    implementation "com.enonic.xp:core-api:${xpVersion}"
+    implementation "com.enonic.xp:portal-api:${xpVersion}"
+    include "com.enonic.xp:lib-content:${xpVersion}"
+    include "com.enonic.xp:lib-portal:${xpVersion}"
+    include "com.enonic.lib:lib-thymeleaf:2.0.1"
+    include "com.enonic.lib:lib-http-client:3.2.1"
+    include "com.enonic.lib:lib-cache:2.2.0"
+    include "com.enonic.lib:lib-guillotine:6.0.5"
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    xp.enonicRepo()
+}
