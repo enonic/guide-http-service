@@ -4,7 +4,7 @@
 This guide will provide you with the basic knowledge about writing *HTTP services* in Enonic XP.
 ****
 
-TIP: Additional information on HTTP services can be found in the offical XP documentation: https://developer.enonic.com/docs/xp/stable/runtime/engines/http-service
+TIP: Additional information on HTTP services can be found in the offical https://developer.enonic.com/docs/xp/stable/runtime/engines/http-service[XP documentation].
 
 == What is an HTTP service
 HTTP services are https://developer.enonic.com/docs/xp/stable/framework/http#http-controller[HTTP controllers] that get exposed on urls matching a specific pattern.
