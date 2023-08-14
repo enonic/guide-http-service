@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Build a Http service</title>
+<title>Build an HTTP service</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,11 +436,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Build a Http service</h1>
+<h1>Build an HTTP service</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#what_is_a_http_service">What is a Http service</a></li>
+<li><a href="#what_is_an_http_service">What is an HTTP service</a></li>
 <li><a href="#url_pattern_and_context">Url pattern and context</a></li>
 <li><a href="#access_restriction">Access restriction</a></li>
 <li><a href="#generating_a_valid_url">Generating a valid url</a></li>
@@ -455,20 +455,32 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p>This guide will provide you the basic knowledge about writing <strong>Http services</strong> in Enonic XP.</p>
+<p>This guide will provide you with the basic knowledge about writing <strong>HTTP services</strong> in Enonic XP.</p>
 </div>
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Additional information on HTTP services can be found in the offical XP documentation: <a href="https://developer.enonic.com/docs/xp/stable/runtime/engines/http-service" class="bare">https://developer.enonic.com/docs/xp/stable/runtime/engines/http-service</a>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="what_is_a_http_service"><a class="link" href="#what_is_a_http_service">What is a Http service</a></h2>
+<h2 id="what_is_an_http_service"><a class="link" href="#what_is_an_http_service">What is an HTTP service</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Http services are <a href="https://developer.enonic.com/docs/xp/stable/framework/http#http-controller">http controllers</a> that get exposed on urls matching a specific pattern.</p>
+<p>HTTP services are <a href="https://developer.enonic.com/docs/xp/stable/framework/http#http-controller">HTTP controllers</a> that get exposed on urls matching a specific pattern.</p>
 </div>
 <div class="paragraph">
-<p>In order to create a service, you’ll need to create a js controller and place it under <code>src/main/resources/services/&lt;service-name&gt;/&lt;service-name&gt;.js</code></p>
+<p>In order to create a service, you’ll need to create a Javascript controller and place it under <code>src/main/resources/services/&lt;service-name&gt;/&lt;service-name&gt;.js</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -477,7 +489,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-JS controllers should return the following <a href="https://developer.enonic.com/docs/xp/stable/framework/http#http-response">response</a> object.
+JS controllers should return a specific <a href="https://developer.enonic.com/docs/xp/stable/framework/http#http-response">response object</a>.
 </td>
 </tr>
 </table>
@@ -507,7 +519,7 @@ JS controllers should return the following <a href="https://developer.enonic.com
 </ol>
 </div>
 <div class="paragraph">
-<p>The url you choose to call your service will <strong>define the context of the call</strong>. For example, depending on the chosen url, you&#8217;ll get your service running on different projects:</p>
+<p>The url you choose to call your service on will <strong>define the context of the call</strong>. For example, depending on the chosen url, you&#8217;ll get your service running under different projects and/or branches:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -532,7 +544,7 @@ JS controllers should return the following <a href="https://developer.enonic.com
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<a href="https://developer.enonic.com/docs/xp/stable/api/lib-context">lib context</a> can be used inside the service controller to ensure a specific context on the call.
+<a href="https://developer.enonic.com/docs/xp/stable/api/lib-context">lib context</a> can be used inside the service controller to ensure a specific context of the call.
 </td>
 </tr>
 </table>
@@ -543,10 +555,10 @@ JS controllers should return the following <a href="https://developer.enonic.com
 <h2 id="access_restriction"><a class="link" href="#access_restriction">Access restriction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>It is also possible to restrict access to the service based on user roles.</p>
+<p>It is also possible to restrict access to a service based on user roles.</p>
 </div>
 <div class="paragraph">
-<p>This can be done without custom coding, and you just need to add a <code>&lt;service-name&gt;.xml</code> file in your service folder with the following structure</p>
+<p>This can be done without custom coding, you just need to add a <code>&lt;service-name&gt;.xml</code> file in your service folder with the following structure:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -565,7 +577,7 @@ JS controllers should return the following <a href="https://developer.enonic.com
 <h2 id="generating_a_valid_url"><a class="link" href="#generating_a_valid_url">Generating a valid url</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Instead of manually writing a valid service url to call it in your application, Enonic portal JS api provides a method <a href="https://developer.enonic.com/docs/xp/stable/api/lib-portal#serviceurl">serviceUrl</a> to generate a valid url pointing to a service.</p>
+<p>Instead of manually writing a valid service url to call it in your application, Enonic&#8217;s Portal JS API provides <a href="https://developer.enonic.com/docs/xp/stable/api/lib-portal#serviceurl">serviceUrl</a> method to generate a valid url pointing to a service.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -585,10 +597,10 @@ The <code>serviceUrl`</code> function will mount a url to a service based on the
 <h2 id="example_of_a_service"><a class="link" href="#example_of_a_service">Example of a service</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Now that we know what services are, lets come up with our own.</p>
+<p>Now that we know what services are, let&#8217;s build our own.</p>
 </div>
 <div class="paragraph">
-<p>Our goal is to create a service that returns a json with data from a specific content type based on parameters provided by a service url.</p>
+<p>Our goal is to create a service that returns a JSON with data from a specific content type based on parameters provided by a service url.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -616,11 +628,11 @@ The <code>serviceUrl`</code> function will mount a url to a service based on the
 </div>
 </div>
 <div class="paragraph">
-<p>For sake of simplicity, our service will expect a <strong>GET</strong> http request with some specific (but not required) query parameters.</p>
+<p>For sake of simplicity, our service will expect a <strong>GET</strong> HTTP request with some specific (but not required) query parameters.</p>
 </div>
 </li>
 <li>
-<p>Since we’d like to fetch the person content type, it makes sense to call our service something like people or getPeople. Let’s stick with <strong>people</strong>, therefore create a js file: <code>src/main/resources/services/people/people.js</code> with the following code:</p>
+<p>Since we’d like to fetch the person content type, it makes sense to call our service something like <code>people</code> or <code>getPeople</code>. Let’s stick with <strong>people</strong>, therefore create a JS file called <code>src/main/resources/services/people/people.js</code> with the following code:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-Javascript" data-lang="Javascript">exports.get = function (request) {};</code></pre>
@@ -632,19 +644,16 @@ The <code>serviceUrl`</code> function will mount a url to a service based on the
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><code>s</code> will be a string parameter to look for person <strong>firstName or lastName</strong></p>
+<p><code>s</code> will be a string parameter to look for person&#8217;s <strong>firstName</strong> or <strong>lastName</strong> (default: empty string)</p>
 </li>
 <li>
-<p><code>l</code> will be a parameter to <strong>limit the number of results</strong></p>
-</li>
-<li>
-<p><code>s</code> default will be an empty string and <code>l</code> default will be 5.</p>
+<p><code>l</code> will be a parameter to <strong>limit the number of results</strong> (default: 5)</p>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p>Now that we&#8217;ve defined that we’ll use parameters, let’s investigate what is returned on the request parameter of the function that get exposed as <strong>GET</strong>. To do that, update the service code to:</p>
+<p>Now that we&#8217;ve defined parameters and values, let’s investigate what is returned on the request parameter of the <strong>GET</strong> handler function. To do that, update the service code to:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-Javascript" data-lang="Javascript">exports.get = function (request) {
@@ -742,7 +751,7 @@ exports.get = function (request) {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The <strong>project name</strong> can be found on the top left corner of content studio. If you haven&#8217;t setup a new project, it is probably <code>default</code>. <strong>Branch</strong> will be <code>draft</code> or <code>master</code>. <strong>App name</strong> was already described before, and is located in <code>gradle.properties</code>
+The <strong>project name</strong> can be found in the top left corner of Content Studio. If you haven&#8217;t set up a new project, it is probably the <code>default</code> one. <strong>Branch</strong> will be <code>draft</code> or <code>master</code>. <strong>App name</strong> was already described before, and is located in <code>gradle.properties</code>
 </td>
 </tr>
 </table>
@@ -757,7 +766,7 @@ The <strong>project name</strong> can be found on the top left corner of content
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Note that depending on the context it is possible to get no data as a return. The reason for that is probably because in that context you don&#8217;t have person content type instances to be queried by content lib.
+Depending on the context it is possible to get no data in response. The reason might be that in that context you don&#8217;t have person content type instances to be queried by content lib.
 </td>
 </tr>
 </table>
@@ -768,10 +777,10 @@ Note that depending on the context it is possible to get no data as a return. Th
 <h2 id="other_common_use_cases"><a class="link" href="#other_common_use_cases">Other common use cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the previous example we wrote service that provided content type data based on query parameters.</p>
+<p>In the previous example we made a service that provided content type data based on query parameters.</p>
 </div>
 <div class="paragraph">
-<p>This was just a simple example of how services can be used. Here are some other common use cases for http services:</p>
+<p>This was just a simple example of how services can be used. Here are some other common use cases for HTTP services:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -785,7 +794,7 @@ Note that depending on the context it is possible to get no data as a return. Th
 <p>Directly manage content inside repos</p>
 </li>
 <li>
-<p>Much more creative scnearios when used together with some <a href="https://developer.enonic.com/docs/xp/stable/api">Enonic JS libraries</a></p>
+<p>Much more creative scenarios when used together with some <a href="https://developer.enonic.com/docs/xp/stable/api">Enonic JS libraries</a></p>
 </li>
 </ul>
 </div>
@@ -794,7 +803,7 @@ Note that depending on the context it is possible to get no data as a return. Th
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-08-14 13:10:49 UTC
+Last updated 2023-08-14 13:22:51 UTC
 </div>
 </div>
 </body>
