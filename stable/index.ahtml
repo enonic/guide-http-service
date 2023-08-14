@@ -744,11 +744,11 @@ exports.get = function (request) {
 <div class="paragraph">
 <p><span class="image"><img src="images/service-example.png" alt="Service example" width="75%"></span></p>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 The <strong>project name</strong> can be found in the top left corner of Content Studio. If you haven&#8217;t set up a new project, it is probably the <code>default</code> one. <strong>Branch</strong> will be <code>draft</code> or <code>master</code>. <strong>App name</strong> was already described before, and is located in <code>gradle.properties</code>
@@ -803,7 +803,7 @@ Depending on the context it is possible to get no data in response. The reason m
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-08-14 13:44:43 UTC
+Last updated 2023-08-14 13:50:40 UTC
 </div>
 </div>
 </body>
