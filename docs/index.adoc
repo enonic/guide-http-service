@@ -1,15 +1,17 @@
-= Build a Http service
+= Build an HTTP service
 
 ****
-This guide will provide you the basic knowledge about writing *Http services* in Enonic XP.
+This guide will provide you with the basic knowledge about writing *HTTP services* in Enonic XP.
 ****
 
-== What is a Http service
-Http services are https://developer.enonic.com/docs/xp/stable/framework/http#http-controller[http controllers] that get exposed on urls matching a specific pattern.
+TIP: Additional information on HTTP services can be found in the offical XP documentation: https://developer.enonic.com/docs/xp/stable/runtime/engines/http-service
 
-In order to create a service, you’ll need to create a js controller and place it under `src/main/resources/services/<service-name>/<service-name>.js`
+== What is an HTTP service
+HTTP services are https://developer.enonic.com/docs/xp/stable/framework/http#http-controller[HTTP controllers] that get exposed on urls matching a specific pattern.
 
-NOTE: JS controllers should return the following https://developer.enonic.com/docs/xp/stable/framework/http#http-response[response] object.
+In order to create a service, you’ll need to create a Javascript controller and place it under `src/main/resources/services/<service-name>/<service-name>.js`
+
+NOTE: JS controllers should return a specific https://developer.enonic.com/docs/xp/stable/framework/http#http-response[response object].
 
 == Url pattern and context
 This is the url pattern in which the service controller will get exposed: `**/_/service/<appname>/<servicename>`
@@ -20,7 +22,7 @@ That means that the same service can be invoked in multiple locations:
 . `domain.com/some/path/_/service/<appname>/<servicename>`
 . …
 
-The url you choose to call your service will *define the context of the call*. For example, depending on the chosen url, you'll get your service running on different projects:
+The url you choose to call your service on will *define the context of the call*. For example, depending on the chosen url, you'll get your service running under different projects and/or branches:
 
 . `.../site/my-first-project/draft/_/service/<appname>/<servicename>`
 . `.../site/my-first-project/master/_/service/<appname>/<servicename>`
@@ -28,12 +30,12 @@ The url you choose to call your service will *define the context of the call*. F
 
 In the examples above, the first will run on `my-first-project` in the `draft` branch. The second will run on the same project, but in the `master` branch. Finally, the last one will run the `my-second-project` in the `draft` branch.
 
-NOTE: https://developer.enonic.com/docs/xp/stable/api/lib-context[lib context] can be used inside the service controller to ensure a specific context on the call.
+NOTE: https://developer.enonic.com/docs/xp/stable/api/lib-context[lib context] can be used inside the service controller to ensure a specific context of the call.
 
 == Access restriction
-It is also possible to restrict access to the service based on user roles. 
+It is also possible to restrict access to a service based on user roles. 
 
-This can be done without custom coding, and you just need to add a `<service-name>.xml` file in your service folder with the following structure
+This can be done without custom coding, you just need to add a `<service-name>.xml` file in your service folder with the following structure:
 
 [source,XML]
 ----
@@ -47,14 +49,14 @@ This can be done without custom coding, and you just need to add a `<service-nam
 ----
 
 == Generating a valid url
-Instead of manually writing a valid service url to call it in your application, Enonic portal JS api provides a method https://developer.enonic.com/docs/xp/stable/api/lib-portal#serviceurl[serviceUrl] to generate a valid url pointing to a service.
+Instead of manually writing a valid service url to call it in your application, Enonic's Portal JS API provides https://developer.enonic.com/docs/xp/stable/api/lib-portal#serviceurl[serviceUrl] method to generate a valid url pointing to a service.
 
 NOTE: The `serviceUrl`` function will mount a url to a service based on the context of where it was called.
 
 == Example of a service
-Now that we know what services are, lets come up with our own.
+Now that we know what services are, let's build our own.
 
-Our goal is to create a service that returns a json with data from a specific content type based on parameters provided by a service url.
+Our goal is to create a service that returns a JSON with data from a specific content type based on parameters provided by a service url.
 
 . Start by creating a very simple *Person* content type:
 +
@@ -63,10 +65,10 @@ Our goal is to create a service that returns a json with data from a specific co
 include::../src/main/resources/site/content-types/person/person.xml[]
 ----
 +
-For sake of simplicity, our service will expect a *GET* http request with some specific (but not required) query parameters. 
+For sake of simplicity, our service will expect a *GET* HTTP request with some specific (but not required) query parameters. 
 
 
-. Since we’d like to fetch the person content type, it makes sense to call our service something like people or getPeople. Let’s stick with *people*, therefore create a js file: `src/main/resources/services/people/people.js` with the following code:
+. Since we’d like to fetch the person content type, it makes sense to call our service something like `people` or `getPeople`. Let’s stick with *people*, therefore create a JS file called `src/main/resources/services/people/people.js` with the following code:
 +
 [source,Javascript]
 ----
@@ -75,11 +77,10 @@ exports.get = function (request) {};
 
 . Let’s now define our query parameters:
 
-.. `s` will be a string parameter to look for person *firstName or lastName*
-.. `l` will be a parameter to *limit the number of results*
-.. `s` default will be an empty string and `l` default will be 5. 
+.. `s` will be a string parameter to look for person's *firstName* or *lastName* (default: empty string)
+.. `l` will be a parameter to *limit the number of results* (default: 5)
 
-. Now that we've defined that we’ll use parameters, let’s investigate what is returned on the request parameter of the function that get exposed as *GET*. To do that, update the service code to:
+. Now that we've defined parameters and values, let’s investigate what is returned on the request parameter of the *GET* handler function. To do that, update the service code to:
 +
 [source,Javascript]
 ----
@@ -119,16 +120,16 @@ image:images/service-example.png["Service example", width=75%, align="center"]
 
 
 +
-NOTE: The *project name* can be found on the top left corner of content studio. If you haven't setup a new project, it is probably `default`. *Branch* will be `draft` or `master`. *App name* was already described before, and is located in `gradle.properties`
+NOTE: The *project name* can be found in the top left corner of Content Studio. If you haven't set up a new project, it is probably the `default` one. *Branch* will be `draft` or `master`. *App name* was already described before, and is located in `gradle.properties`
 
-NOTE: Note that depending on the context it is possible to get no data as a return. The reason for that is probably because in that context you don't have person content type instances to be queried by content lib.
+NOTE: Depending on the context it is possible to get no data in response. The reason might be that in that context you don't have person content type instances to be queried by content lib.
 
 == Other common use cases
-In the previous example we wrote service that provided content type data based on query parameters.
+In the previous example we made a service that provided content type data based on query parameters.
 
-This was just a simple example of how services can be used. Here are some other common use cases for http services:
+This was just a simple example of how services can be used. Here are some other common use cases for HTTP services:
 
 - Provide data for a https://developer.enonic.com/docs/build-a-custom-selector[custom selector]
 - Process *POST* requests from forms in an application
 - Directly manage content inside repos
-- Much more creative scnearios when used together with some https://developer.enonic.com/docs/xp/stable/api[Enonic JS libraries]
+- Much more creative scenarios when used together with some https://developer.enonic.com/docs/xp/stable/api[Enonic JS libraries]
